@@ -1,0 +1,10 @@
+<div class="product-wrapper">
+    <div class="text-center">{{ item.name }}</div>
+    <div class="d-flex flex-column">
+        <div class="d-flex justify-content-around">
+            <div>{{ item.price | currency: 'EUR' : 'symbol' }}</div>
+            <div>{{ item.id }}</div>
+        </div>
+        <div>Available: {{ item.quantity }}</div>
+    </div>
+</div>

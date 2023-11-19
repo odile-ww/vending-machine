@@ -1,0 +1,27 @@
+.container {
+    max-width: 800px;
+}
+
+.dispenser {
+    width: 100%;
+}
+.dispenser > div {
+    text-align: center;
+}
+
+.item-selector {
+    flex-grow: 1;
+    gap: 50px;
+    max-width: 200px;
+    margin-top: 8px;
+}
+
+.coin-item {
+    border: 1px solid black;
+    padding-top: 2px;
+    border-radius: 50%;
+    margin-right: 4px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+}

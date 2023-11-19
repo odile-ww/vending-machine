@@ -1,0 +1,10 @@
+<div class="row products-wrapper justify-content-around">
+    <div
+        *ngFor="let product of products"
+        class="card col-3"
+        (click)="selectProduct(product)"
+        (keyup)="selectProduct(product)"
+        [attr.tabindex]="-1">
+        <app-product-item *ngIf="product" [item]="product"></app-product-item>
+    </div>
+</div>

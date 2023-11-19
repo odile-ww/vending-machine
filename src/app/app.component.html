@@ -1,30 +1,14 @@
 <section class="container d-flex">
     <div class="d-flex flex-column align-items-center">
-        <div class="row products-wrapper justify-content-around">
-            <div
-                *ngFor="let product of products"
-                class="card col-3"
-                (click)="takeProduct(product)"
-                (keyup)="takeProduct(product)"
-                [attr.tabindex]="-1">
-                <div class="text-center">{{ product.name }}</div>
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-around">
-                        <div>{{ product.price | currency: 'EUR' : 'symbol' }}</div>
-                        <div>{{ product.id }}</div>
-                    </div>
-                    <div>Available: {{ product.quantity }}</div>
-                </div>
-            </div>
-        </div>
+        <app-products [products]="products" [balance]="balance" [purchaseState]="purchaseState"></app-products>
         <div class="card dispenser">
             <div>Product Dispenser</div>
-            <div>box for change</div>
+            <div>box for product</div>
         </div>
     </div>
     <div class="item-selector d-flex flex-column">
         <div class="card">
-            <div>Insert Coins</div>
+            <div>Wallet</div>
             <div class="d-flex coin-container">
                 <div
                     *ngFor="let coin of coinDenominations"
@@ -35,7 +19,6 @@
                     {{ coin }}
                 </div>
             </div>
-
             <div></div>
         </div>
         <div class="card">
