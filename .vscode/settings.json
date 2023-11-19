@@ -1,4 +1,6 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "editor.formatOnSave": true
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
 }
