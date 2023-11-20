@@ -1,0 +1,18 @@
+<div class="wallet d-flex flex-column">
+    <div class="card">
+        <div>Insert coin</div>
+        <div class="d-flex coin-container">
+            <div
+                *ngFor="let coin of coinDenominations"
+                class="coin-item"
+                (click)="addCoins(coin)"
+                (keyup)="addCoins(coin)"
+                [attr.tabindex]="-1">
+                {{ coin }}
+            </div>
+        </div>
+        <p>Balance: {{ balance }}</p>
+        <button (click)="confirmTransaction()" [disabled]="!machineReadyState">Confirm</button>
+        <button (click)="clear()" [disabled]="!balance">Clear</button>
+    </div>
+</div>

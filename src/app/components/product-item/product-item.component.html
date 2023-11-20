@@ -5,6 +5,7 @@
             <div>{{ item.price | currency: 'EUR' : 'symbol' }}</div>
             <div>{{ item.id }}</div>
         </div>
-        <div>Available: {{ item.quantity }}</div>
+        <div class="text-center">Stock: {{ item.quantity }}</div>
+        <button (click)="selectProduct(item)" [disabled]="isDisabled">Select</button>
     </div>
 </div>

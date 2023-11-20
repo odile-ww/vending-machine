@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { coinDenominations } from './constants/constants';
+import { distinctUntilChanged, take } from 'rxjs';
+
 import { PaymentService } from './services/payment.service';
 import { IProduct } from './interfaces/product.interface';
 import { ProductsComponent } from './components/products/products.component';
+import { WalletComponent } from './components/wallet/wallet.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, ProductsComponent],
+    imports: [CommonModule, ProductsComponent, WalletComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
@@ -18,20 +20,22 @@ export class AppComponent implements OnInit {
     public balance: number = 0;
     public purchaseState = 'Waiting';
 
-    readonly coinDenominations = coinDenominations;
-
     constructor(private paymentService: PaymentService) {}
 
     ngOnInit() {
-        this.paymentService.getProducts().subscribe(result => (this.products = result));
-        this.paymentService.balanceObservable.subscribe(balance => {
-            this.balance = balance;
-        });
-    }
-
-    public addCoins(amount: string): void {
-        this.balance += Math.round(parseFloat(amount) * 10) / 10;
-        this.paymentService.updateBalance(this.balance);
+        this.paymentService
+            .getProducts()
+            .pipe(take(1))
+            .subscribe(result => {
+                this.products = result;
+                this.paymentService.updateStock(result);
+            });
+        this.paymentService.balanceObservable
+            .pipe(distinctUntilChanged())
+            .subscribe(balance => (this.balance = balance));
+        this.paymentService.productsObservable
+            .pipe(distinctUntilChanged())
+            .subscribe(products => (this.products = products));
     }
 
     public takeChange(): void {

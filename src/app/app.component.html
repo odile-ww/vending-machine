@@ -1,35 +1,18 @@
-<section class="container d-flex">
-    <div class="d-flex flex-column align-items-center">
+<main class="container d-flex">
+    <div class="d-flex flex-column align-items-center machine">
         <app-products [products]="products" [balance]="balance" [purchaseState]="purchaseState"></app-products>
-        <div class="card dispenser">
-            <div>Product Dispenser</div>
-            <div>box for product</div>
-        </div>
-    </div>
-    <div class="item-selector d-flex flex-column">
-        <div class="card">
-            <div>Wallet</div>
-            <div class="d-flex coin-container">
-                <div
-                    *ngFor="let coin of coinDenominations"
-                    class="coin-item"
-                    (click)="addCoins(coin)"
-                    (keyup)="addCoins(coin)"
-                    [attr.tabindex]="-1">
-                    {{ coin }}
-                </div>
+        <div class="row w-100">
+            <div class="card col-8">
+                <div>Product Dispenser</div>
+                <div>box for product</div>
             </div>
-            <div></div>
-        </div>
-        <div class="card">
-            <div>Product Selection</div>
-            <div>A B C</div>
-            <div>1 2 3 4 5</div>
-        </div>
-        <div class="card">
-            <div>Take Your Change</div>
-            <div>Change Balance: {{ balance }}</div>
-            <p *ngIf="balance" (click)="takeChange()" (keyup)="takeChange()" [attr.tabindex]="-1">Pick change</p>
+            <div class="card col-4">
+                <p>Change: {{ balance }}</p>
+                <button *ngIf="balance" (click)="takeChange()" (keyup)="takeChange()" [attr.tabindex]="-1">
+                    Pick change
+                </button>
+            </div>
         </div>
     </div>
-</section>
+    <app-wallet [balance]="balance"></app-wallet>
+</main>
