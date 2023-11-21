@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { distinctUntilChanged, take } from 'rxjs';
 
 import { IProduct } from '../../interfaces/product.interface';
 import { PaymentService } from '../../services/payment.service';
@@ -12,11 +14,22 @@ import { ProductItemComponent } from '../product-item/product-item.component';
     styleUrl: './products.component.scss',
     imports: [CommonModule, ProductItemComponent],
 })
-export class ProductsComponent {
-    @Input() products: IProduct[] = [];
-    @Input() balance: number;
+export class ProductsComponent implements OnInit {
+    public products: IProduct[] = [];
 
     constructor(private paymentService: PaymentService) {}
+    ngOnInit() {
+        this.paymentService
+            .getProducts()
+            .pipe(take(1))
+            .subscribe(result => {
+                this.paymentService.updateStock(result);
+            });
+
+        this.paymentService.productsObservable
+            .pipe(distinctUntilChanged())
+            .subscribe(products => (this.products = products));
+    }
 
     public onUpdateProducts(selected: IProduct) {
         const updatedStock = this.products.map((item: IProduct) => {

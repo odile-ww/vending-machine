@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { distinctUntilChanged } from 'rxjs';
@@ -14,8 +14,7 @@ import { coinDenominations } from '../../constants/constants';
     imports: [CommonModule],
 })
 export class WalletComponent implements OnInit {
-    @Input() balance: number;
-    public machineReadyState: boolean;
+    public balance: number = 0;
     public tempBalance = 0;
     public change = 0;
 
@@ -24,9 +23,9 @@ export class WalletComponent implements OnInit {
     constructor(private paymentService: PaymentService) {}
 
     ngOnInit(): void {
-        this.paymentService.isReadyObservable
+        this.paymentService.balanceObservable
             .pipe(distinctUntilChanged())
-            .subscribe(state => (this.machineReadyState = state));
+            .subscribe(balance => (this.balance = balance));
         this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => (this.change = change));
     }
 
