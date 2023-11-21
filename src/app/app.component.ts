@@ -18,7 +18,7 @@ import { WalletComponent } from './components/wallet/wallet.component';
 export class AppComponent implements OnInit {
     public products: IProduct[] = [];
     public balance: number = 0;
-    public purchaseState = 'Waiting';
+    public change: number = 0;
 
     constructor(private paymentService: PaymentService) {}
 
@@ -36,10 +36,13 @@ export class AppComponent implements OnInit {
         this.paymentService.productsObservable
             .pipe(distinctUntilChanged())
             .subscribe(products => (this.products = products));
+        this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => {
+            this.change = change;
+        });
     }
 
     public takeChange(): void {
-        this.balance = 0;
-        this.paymentService.updateBalance(0);
+        this.change = 0;
+        this.paymentService.setChange(this.change);
     }
 }

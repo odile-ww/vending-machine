@@ -9,9 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class PaymentService {
     private apiUrl = '/api/products';
 
-    //wallet state
+    //coins state
     private balanceSubject$: BehaviorSubject<number> = new BehaviorSubject(0);
     public balanceObservable: Observable<number> = this.balanceSubject$.asObservable();
+    private changeSubject$: BehaviorSubject<number> = new BehaviorSubject(0);
+    public changeObservable: Observable<number> = this.changeSubject$.asObservable();
 
     //products state
     private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
@@ -19,9 +21,7 @@ export class PaymentService {
 
     //transaction state
     private isReadySubject$ = new BehaviorSubject<boolean>(false);
-    private canSelectSubject$ = new BehaviorSubject<boolean>(false);
     public isReadyObservable: Observable<boolean> = this.isReadySubject$.asObservable();
-    public canSelectObservable: Observable<boolean> = this.canSelectSubject$.asObservable();
 
     constructor(private httpClient: HttpClient) {}
 
@@ -40,8 +40,7 @@ export class PaymentService {
     public setReadyState(state: boolean): void {
         this.isReadySubject$.next(state);
     }
-
-    public setCanSelect(state: boolean): void {
-        this.canSelectSubject$.next(state);
+    public setChange(amount: number): void {
+        this.changeSubject$.next(amount);
     }
 }

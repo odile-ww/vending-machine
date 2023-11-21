@@ -16,6 +16,9 @@ import { coinDenominations } from '../../constants/constants';
 export class WalletComponent implements OnInit {
     @Input() balance: number;
     public machineReadyState: boolean;
+    public tempBalance = 0;
+    public change = 0;
+
     readonly coinDenominations = coinDenominations;
 
     constructor(private paymentService: PaymentService) {}
@@ -24,20 +27,24 @@ export class WalletComponent implements OnInit {
         this.paymentService.isReadyObservable
             .pipe(distinctUntilChanged())
             .subscribe(state => (this.machineReadyState = state));
+        this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => (this.change = change));
     }
 
     public addCoins(amount: string): void {
-        this.balance += Math.round(parseFloat(amount) * 10) / 10;
+        this.tempBalance += Math.round(parseFloat(amount) * 10) / 10;
+    }
+
+    public confirmTransaction(): void {
+        this.balance = this.tempBalance;
+        this.tempBalance = 0;
         this.paymentService.updateBalance(this.balance);
         this.paymentService.setReadyState(true);
     }
 
-    public confirmTransaction(): void {
-        this.paymentService.setCanSelect(true);
-    }
-
     public clear(): void {
+        this.change = this.tempBalance;
         this.balance = 0;
+        this.tempBalance = 0;
         this.paymentService.updateBalance(0);
         this.paymentService.setReadyState(false);
     }

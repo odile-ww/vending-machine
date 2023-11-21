@@ -15,7 +15,6 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 export class ProductsComponent {
     @Input() products: IProduct[] = [];
     @Input() balance: number;
-    @Input() purchaseState: string; // make type
 
     constructor(private paymentService: PaymentService) {}
 

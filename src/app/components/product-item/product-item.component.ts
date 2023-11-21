@@ -17,29 +17,22 @@ export class ProductItemComponent implements OnInit {
     @Output() updateProducts = new EventEmitter<IProduct>();
     public isDisabled: boolean = true;
     private balance: number;
-    private canSelectProduct: boolean;
+    private change: number = 0;
 
     constructor(private paymentService: PaymentService) {}
 
     ngOnInit(): void {
         this.paymentService.balanceObservable.pipe(distinctUntilChanged()).subscribe(balance => {
             this.balance = balance;
-        });
-        this.paymentService.canSelectObservable.pipe(distinctUntilChanged()).subscribe(state => {
-            this.canSelectProduct = state;
-            console.log(this.balance <= this.item.price);
-            this.isDisabled = this.balance <= this.item.price || !this.canSelectProduct;
+            this.isDisabled = this.balance <= this.item.price || this.item.quantity === 0;
         });
     }
 
     public selectProduct(product: IProduct): void {
-        if (product.price >= this.balance) {
-            this.canSelectProduct = true;
-        } else {
-            this.canSelectProduct = false;
-        }
-        this.balance = this.balance - product.price;
+        this.change = this.balance - product.price;
+        this.balance = 0;
         this.paymentService.updateBalance(this.balance);
         this.updateProducts.emit(product);
+        this.paymentService.setChange(this.change);
     }
 }

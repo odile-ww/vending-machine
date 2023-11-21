@@ -1,14 +1,14 @@
 <main class="container d-flex">
     <div class="d-flex flex-column align-items-center machine">
-        <app-products [products]="products" [balance]="balance" [purchaseState]="purchaseState"></app-products>
+        <app-products [products]="products" [balance]="balance"></app-products>
         <div class="row w-100">
             <div class="card col-8">
                 <div>Product Dispenser</div>
                 <div>box for product</div>
             </div>
             <div class="card col-4">
-                <p>Change: {{ balance }}</p>
-                <button *ngIf="balance" (click)="takeChange()" (keyup)="takeChange()" [attr.tabindex]="-1">
+                <p>Change: {{ change }}</p>
+                <button *ngIf="change" (click)="takeChange()" (keyup)="takeChange()" [attr.tabindex]="-1">
                     Pick change
                 </button>
             </div>
