@@ -24,7 +24,7 @@ export class ProductItemComponent implements OnInit {
     ngOnInit(): void {
         this.paymentService.balanceObservable.pipe(distinctUntilChanged()).subscribe(balance => {
             this.balance = balance;
-            this.isDisabled = this.balance <= this.item.price || this.item.quantity === 0;
+            this.isDisabled = this.balance < this.item.price || this.item.quantity === 0;
         });
     }
 
@@ -34,5 +34,6 @@ export class ProductItemComponent implements OnInit {
         this.paymentService.updateBalance(this.balance);
         this.updateProducts.emit(product);
         this.paymentService.setChange(this.change);
+        this.paymentService.updateSelectedProduct(product);
     }
 }

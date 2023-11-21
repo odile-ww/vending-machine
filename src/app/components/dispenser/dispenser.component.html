@@ -1,0 +1,10 @@
+<div class="row w-100 dispenser">
+    <div class="card col-8">
+        <div>Product Dispenser</div>
+        <div>box for product</div>
+    </div>
+    <div class="card col-4">
+        <p>Change: {{ change }}</p>
+        <button *ngIf="change" (click)="takeChange()" (keyup)="takeChange()" [attr.tabindex]="-1">Pick change</button>
+    </div>
+</div>

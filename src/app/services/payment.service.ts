@@ -18,6 +18,8 @@ export class PaymentService {
     //products state
     private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
     public productsObservable: Observable<IProduct[]> = this.productsSubject$.asObservable();
+    private selectedProductSubject$ = new BehaviorSubject<IProduct>({} as IProduct);
+    public selectedProductObservable: Observable<IProduct> = this.selectedProductSubject$.asObservable();
 
     //transaction state
     private isReadySubject$ = new BehaviorSubject<boolean>(false);
@@ -40,7 +42,12 @@ export class PaymentService {
     public setReadyState(state: boolean): void {
         this.isReadySubject$.next(state);
     }
+
     public setChange(amount: number): void {
         this.changeSubject$.next(amount);
+    }
+
+    public updateSelectedProduct(product: IProduct): void {
+        this.selectedProductSubject$.next(product);
     }
 }

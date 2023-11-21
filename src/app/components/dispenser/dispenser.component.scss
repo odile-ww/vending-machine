@@ -1,10 +1,9 @@
-.container {
-    max-width: 800px;
-}
-
-.machine {
-    margin-top: 20px;
+.dispenser {
+    width: 100%;
     box-shadow:
         0px 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
         -20px 0px 10px -20px rgba(0, 0, 0, 0.45) inset;
+}
+.dispenser > div {
+    text-align: center;
 }

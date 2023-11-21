@@ -7,11 +7,12 @@ import { PaymentService } from './services/payment.service';
 import { IProduct } from './interfaces/product.interface';
 import { ProductsComponent } from './components/products/products.component';
 import { WalletComponent } from './components/wallet/wallet.component';
+import { DispenserComponent } from './components/dispenser/dispenser.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, ProductsComponent, WalletComponent],
+    imports: [CommonModule, ProductsComponent, WalletComponent, DispenserComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
@@ -36,13 +37,5 @@ export class AppComponent implements OnInit {
         this.paymentService.productsObservable
             .pipe(distinctUntilChanged())
             .subscribe(products => (this.products = products));
-        this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => {
-            this.change = change;
-        });
-    }
-
-    public takeChange(): void {
-        this.change = 0;
-        this.paymentService.setChange(this.change);
     }
 }
