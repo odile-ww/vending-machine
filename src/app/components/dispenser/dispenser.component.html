@@ -1,10 +1,11 @@
-<section class="row w-100 dispenser">
-    <div class="card col-8">
-        <p>Product Dispenser</p>
-        <button *ngIf="selectedProduct" (click)="takeProduct()">Take your {{ selectedProduct.name }}</button>
-    </div>
-    <div class="card col-4">
-        <p>Change: {{ change }}</p>
-        <button *ngIf="change" (click)="takeChange()">Pick change</button>
+<section class="dispenser flex">
+    <div class="dispenser__product">
+        <p *ngIf="!selectedProduct; else dispense">Product Dispenser</p>
+        <ng-template #dispense>
+            <button class="btn__danger" (click)="takeProduct()">
+                Take your <strong>{{ selectedProduct?.name }} </strong>
+                <strong *ngIf="change">and your {{ change | currency: 'EUR' : 'symbol' }} change</strong>
+            </button>
+        </ng-template>
     </div>
 </section>

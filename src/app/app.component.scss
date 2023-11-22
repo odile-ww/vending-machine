@@ -1,20 +1,23 @@
 .page__wrapper {
     margin: 0 auto;
     width: 90%;
-    .content__wrapper {
-        display: flex;
 
+    h1 {
+        text-align: center;
+    }
+
+    .content__wrapper {
+        justify-content: center;
         .machine__wrapper {
-            display: flex;
-            flex-direction: column;
             max-width: 600px;
             border: 1px solid black;
         }
 
         .wallet__wrapper {
-            display: flex;
-            flex-direction: column;
+            max-width: 200px;
             flex-basis: 100%;
+            border: 1px solid black;
+            border-left: none;
         }
     }
 }

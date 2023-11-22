@@ -1,15 +1,18 @@
-<section class="product__details">
-    <header class="product__header">{{ item.name }}</header>
-    <div class="cylinder"></div>
-    <div class="product__footer">
-        <span>{{ item.price | currency: 'EUR' : 'symbol' }}</span>
-        <span class="text-center">Stock: {{ item.quantity }}</span>
-    </div>
+<section class="product__details flex flex__column">
+    <div *ngIf="item.quantity < 0" class="out-of-stock__ribbon"><span>Out of Stock</span></div>
 
-    <button *ngIf="item.quantity > 0; else outOfStock" (click)="selectProduct(item)" [disabled]="isDisabled">
-        Select
-    </button>
-    <ng-template #outOfStock>
-        <p>Out of Stock</p>
-    </ng-template>
+    <header class="product__header">{{ item.name }}</header>
+    <div class="product__image">
+        <i class="fa-solid fa-bottle-water"></i>
+        <i class="fa-solid fa-cookie-bite"></i>
+    </div>
+    <div class="product__footer flex">
+        <span
+            ><strong>{{ item.price | currency: 'EUR' : 'symbol' }}</strong></span
+        >
+        <span
+            >Stock: <strong>{{ item.quantity }}</strong></span
+        >
+    </div>
+    <button class="btn__success full-width" (click)="selectProduct(item)" [disabled]="isDisabled">Select</button>
 </section>

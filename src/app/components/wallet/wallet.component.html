@@ -1,20 +1,21 @@
-<section class="wallet__warapper">
-    <div class="card">
-        <p>Choose coin</p>
-        <div class="coin__container">
-            <div
-                *ngFor="let coin of coinDenominations"
-                class="coin-item"
-                [ngClass]="{ disabled: balance || selectedProduct || change }"
-                (click)="addCoins(coin)"
-                (keyup)="addCoins(coin)"
-                [attr.tabindex]="-1">
-                {{ coin }}
-            </div>
+<section class="wallet__container flex flex__column">
+    <p>Choose coin</p>
+    <div class="coin__container flex">
+        <div
+            *ngFor="let coin of coinDenominations"
+            class="coin-item"
+            [ngClass]="{ disabled: selectedProduct || change }"
+            (click)="addCoins(coin)"
+            (keyup)="addCoins(coin)"
+            [attr.tabindex]="-1">
+            {{ coin }}
         </div>
-        <p>Chosen: {{ tempBalance }}</p>
-        <button (click)="confirmTransaction()" [disabled]="!tempBalance">Insert coins</button>
-        <button (click)="clear()" [disabled]="!balance && !tempBalance">Clear</button>
-        <p>Inserted: {{ balance }}</p>
     </div>
+    <p>Chosen: {{ tempBalance.toFixed(2) }}</p>
+    <div class="btn__container flex flex__column">
+        <button class="btn__success" (click)="confirmTransaction()" [disabled]="!tempBalance">Insert coins</button>
+        <button class="btn__danger" (click)="clear()" [disabled]="!balance && !tempBalance">Clear</button>
+    </div>
+
+    <p>Inserted: {{ balance.toFixed(2) }}</p>
 </section>

@@ -7,17 +7,69 @@ body {
     font:
         16px 'Raleway',
         sans-serif;
+    color: #31525b;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 300;
 }
+button {
+    font:
+        500 14px 'Raleway',
+        sans-serif;
+    color: #fff;
+    padding: 4px 0;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s linear;
 
-.cylinder {
-    margin: 4px auto;
-    width: 30px;
-    height: 60px;
-    border-radius: 50px 50px / 20px 20px;
-    background: #ce2828;
+    &.btn__success {
+        background-color: #31525b;
+        border: 1px solid #31525b;
+    }
+
+    &.btn__danger {
+        background-color: #ffa101;
+        border: 1px solid#ffa101;
+    }
+
+    &.btn__info {
+        color: #31525b;
+        background-color: #b3dee5;
+        border: 1px solid #b3dee5;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &:hover,
+    &:active {
+        box-shadow:
+            0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
+        cursor: pointer;
+    }
+}
+
+.flex {
+    display: flex;
+
+    &.flex__column {
+        flex-direction: column;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.fa-solid {
+    font-size: 1.8rem;
+    padding: 24px 0;
+    color: #b3dee5;
 }
