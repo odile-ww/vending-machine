@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProductsComponent } from './components/products/products.component';
-import { WalletComponent } from './components/wallet/wallet.component';
-import { DispenserComponent } from './components/dispenser/dispenser.component';
+import { ProductsComponent, WalletComponent, DispenserComponent } from './components';
 
 @Component({
     selector: 'app-root',

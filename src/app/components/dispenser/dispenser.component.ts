@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { IProduct } from '../../interfaces/product.interface';
-import { PaymentService } from '../../services/payment.service';
+import { VendingMachineService } from '../../services/vending-machine.service';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -13,26 +13,23 @@ import { distinctUntilChanged } from 'rxjs';
     imports: [CommonModule],
 })
 export class DispenserComponent implements OnInit {
-    constructor(private paymentService: PaymentService) {}
+    constructor(private vendingMachineService: VendingMachineService) {}
     public change: number;
     public selectedProduct: IProduct | null;
 
     ngOnInit(): void {
-        this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => {
+        this.vendingMachineService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => {
             this.change = change;
         });
-        this.paymentService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
+        this.vendingMachineService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
             this.selectedProduct = product;
         });
     }
 
-    public takeChange(): void {
-        this.change = 0;
-        this.paymentService.setChange(this.change);
-    }
-
     public takeProduct(): void {
         this.selectedProduct = null;
-        this.paymentService.updateSelectedProduct(this.selectedProduct);
+        this.change = 0;
+        this.vendingMachineService.updateSelectedProduct(this.selectedProduct);
+        this.vendingMachineService.setChange(this.change);
     }
 }

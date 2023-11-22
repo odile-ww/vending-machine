@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { distinctUntilChanged } from 'rxjs';
 
-import { PaymentService } from '../../services/payment.service';
+import { VendingMachineService } from '../../services/vending-machine.service';
 import { coinDenominations } from '../../constants/constants';
 import { IProduct } from '../../interfaces/product.interface';
 
@@ -22,14 +22,16 @@ export class WalletComponent implements OnInit {
 
     readonly coinDenominations = coinDenominations;
 
-    constructor(private paymentService: PaymentService) {}
+    constructor(private vendingMachineService: VendingMachineService) {}
 
     ngOnInit(): void {
-        this.paymentService.balanceObservable
+        this.vendingMachineService.balanceObservable
             .pipe(distinctUntilChanged())
             .subscribe(balance => (this.balance = balance));
-        this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => (this.change = change));
-        this.paymentService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
+        this.vendingMachineService.changeObservable
+            .pipe(distinctUntilChanged())
+            .subscribe(change => (this.change = change));
+        this.vendingMachineService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
             this.selectedProduct = product;
         });
     }
@@ -39,17 +41,15 @@ export class WalletComponent implements OnInit {
     }
 
     public confirmTransaction(): void {
-        this.balance = this.tempBalance;
+        this.balance += this.tempBalance;
         this.tempBalance = 0;
-        this.paymentService.updateBalance(this.balance);
-        this.paymentService.setReadyState(true);
+        this.vendingMachineService.updateBalance(this.balance);
     }
 
     public clear(): void {
         this.change = this.tempBalance;
         this.balance = 0;
         this.tempBalance = 0;
-        this.paymentService.updateBalance(0);
-        this.paymentService.setReadyState(false);
+        this.vendingMachineService.updateBalance(0);
     }
 }

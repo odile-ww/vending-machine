@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
     providedIn: 'root',
 })
-export class PaymentService {
+export class VendingMachineService {
     private apiUrl = '/api/products';
 
     //coins state
@@ -37,10 +37,6 @@ export class PaymentService {
 
     public updateStock(items: IProduct[]) {
         this.productsSubject$.next(items);
-    }
-
-    public setReadyState(state: boolean): void {
-        this.isReadySubject$.next(state);
     }
 
     public setChange(amount: number): void {

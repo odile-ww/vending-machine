@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { distinctUntilChanged, take } from 'rxjs';
 
 import { IProduct } from '../../interfaces/product.interface';
-import { PaymentService } from '../../services/payment.service';
+import { VendingMachineService } from '../../services/vending-machine.service';
 import { ProductItemComponent } from '../product-item/product-item.component';
 
 @Component({
@@ -17,16 +17,16 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 export class ProductsComponent implements OnInit {
     public products: IProduct[] = [];
 
-    constructor(private paymentService: PaymentService) {}
+    constructor(private vendingMachineService: VendingMachineService) {}
     ngOnInit() {
-        this.paymentService
+        this.vendingMachineService
             .getProducts()
             .pipe(take(1))
             .subscribe(result => {
-                this.paymentService.updateStock(result);
+                this.vendingMachineService.updateStock(result);
             });
 
-        this.paymentService.productsObservable
+        this.vendingMachineService.productsObservable
             .pipe(distinctUntilChanged())
             .subscribe(products => (this.products = products));
     }
@@ -38,6 +38,6 @@ export class ProductsComponent implements OnInit {
             }
             return item;
         });
-        this.paymentService.updateStock(updatedStock);
+        this.vendingMachineService.updateStock(updatedStock);
     }
 }

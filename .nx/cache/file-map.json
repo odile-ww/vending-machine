@@ -57,7 +57,7 @@
       },
       {
         "file": ".nx/cache/file-map.json",
-        "hash": "17602896231006349574"
+        "hash": "2785846683097524235"
       },
       {
         "file": ".nx/cache/lockfile.hash",
@@ -97,7 +97,7 @@
       },
       {
         "file": "angular.json",
-        "hash": "2481494277309839577"
+        "hash": "14762994078831959110"
       },
       {
         "file": "api/db.json",
@@ -121,15 +121,15 @@
       },
       {
         "file": "src/app/app.component.html",
-        "hash": "14228745423669370068"
+        "hash": "14650582986097390425"
       },
       {
         "file": "src/app/app.component.scss",
-        "hash": "1691040775766601038"
+        "hash": "3899948361071919361"
       },
       {
         "file": "src/app/app.component.ts",
-        "hash": "8571212735789945997"
+        "hash": "2491290746113990496"
       },
       {
         "file": "src/app/app.config.ts",
@@ -140,40 +140,52 @@
         "hash": "12397496131277534773"
       },
       {
+        "file": "src/app/components/dispenser/dispenser.component.html",
+        "hash": "352868948459659058"
+      },
+      {
+        "file": "src/app/components/dispenser/dispenser.component.scss",
+        "hash": "4732291881342814740"
+      },
+      {
+        "file": "src/app/components/dispenser/dispenser.component.ts",
+        "hash": "14212601473120083539"
+      },
+      {
         "file": "src/app/components/product-item/product-item.component.html",
-        "hash": "11807135401836334880"
+        "hash": "12993781841104270626"
       },
       {
         "file": "src/app/components/product-item/product-item.component.scss",
-        "hash": "3244421341483603138"
+        "hash": "240016397945532757"
       },
       {
         "file": "src/app/components/product-item/product-item.component.ts",
-        "hash": "9552292296248950597"
+        "hash": "63651560116842898"
       },
       {
         "file": "src/app/components/products/products.component.html",
-        "hash": "1977723334116890065"
+        "hash": "1299303080051187090"
       },
       {
         "file": "src/app/components/products/products.component.scss",
-        "hash": "8998479538397652053"
+        "hash": "7963970193963791142"
       },
       {
         "file": "src/app/components/products/products.component.ts",
-        "hash": "2434599594344371499"
+        "hash": "17948029045101514937"
       },
       {
         "file": "src/app/components/wallet/wallet.component.html",
-        "hash": "15182415585024492588"
+        "hash": "10176467356990505113"
       },
       {
         "file": "src/app/components/wallet/wallet.component.scss",
-        "hash": "3745870242345501387"
+        "hash": "11888099820677969598"
       },
       {
         "file": "src/app/components/wallet/wallet.component.ts",
-        "hash": "11254548221725242027"
+        "hash": "858966743586642982"
       },
       {
         "file": "src/app/constants/constants.ts",
@@ -185,7 +197,7 @@
       },
       {
         "file": "src/app/services/payment.service.ts",
-        "hash": "7257949813025585617"
+        "hash": "18400364504782402268"
       },
       {
         "file": "src/assets/.gitkeep",
@@ -197,15 +209,15 @@
       },
       {
         "file": "src/index.html",
-        "hash": "2637022859314895706"
+        "hash": "16383353565969736703"
       },
       {
         "file": "src/main.ts",
         "hash": "8060102740304671444"
       },
       {
-        "file": "src/styles.css",
-        "hash": "5195668842064076916"
+        "file": "src/styles.scss",
+        "hash": "2970473523792281449"
       },
       {
         "file": "tsconfig.app.json",

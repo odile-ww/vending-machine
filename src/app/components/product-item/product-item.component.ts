@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaymentService } from '../../services/payment.service';
+import { VendingMachineService } from '../../services/vending-machine.service';
 
 import { IProduct } from '../../interfaces/product.interface';
 import { distinctUntilChanged } from 'rxjs';
@@ -19,10 +19,10 @@ export class ProductItemComponent implements OnInit {
     private balance: number;
     private change: number = 0;
 
-    constructor(private paymentService: PaymentService) {}
+    constructor(private vendingMachineService: VendingMachineService) {}
 
     ngOnInit(): void {
-        this.paymentService.balanceObservable.pipe(distinctUntilChanged()).subscribe(balance => {
+        this.vendingMachineService.balanceObservable.pipe(distinctUntilChanged()).subscribe(balance => {
             this.balance = balance;
             this.isDisabled = this.balance < this.item.price || this.item.quantity === 0;
         });
@@ -31,9 +31,9 @@ export class ProductItemComponent implements OnInit {
     public selectProduct(product: IProduct): void {
         this.change = this.balance - product.price;
         this.balance = 0;
-        this.paymentService.updateBalance(this.balance);
+        this.vendingMachineService.updateBalance(this.balance);
         this.updateProducts.emit(product);
-        this.paymentService.setChange(this.change);
-        this.paymentService.updateSelectedProduct(product);
+        this.vendingMachineService.setChange(this.change);
+        this.vendingMachineService.updateSelectedProduct(product);
     }
 }
