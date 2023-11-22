@@ -15,11 +15,14 @@ import { distinctUntilChanged } from 'rxjs';
 export class DispenserComponent implements OnInit {
     constructor(private paymentService: PaymentService) {}
     public change: number;
-    public selectedProduct: IProduct;
+    public selectedProduct: IProduct | null;
 
     ngOnInit(): void {
         this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => {
             this.change = change;
+        });
+        this.paymentService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
+            this.selectedProduct = product;
         });
     }
 
@@ -29,6 +32,7 @@ export class DispenserComponent implements OnInit {
     }
 
     public takeProduct(): void {
-        this.selectedProduct = {} as IProduct;
+        this.selectedProduct = null;
+        this.paymentService.updateSelectedProduct(this.selectedProduct);
     }
 }

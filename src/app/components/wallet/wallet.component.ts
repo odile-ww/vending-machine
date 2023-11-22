@@ -5,6 +5,7 @@ import { distinctUntilChanged } from 'rxjs';
 
 import { PaymentService } from '../../services/payment.service';
 import { coinDenominations } from '../../constants/constants';
+import { IProduct } from '../../interfaces/product.interface';
 
 @Component({
     selector: 'app-wallet',
@@ -14,6 +15,7 @@ import { coinDenominations } from '../../constants/constants';
     imports: [CommonModule],
 })
 export class WalletComponent implements OnInit {
+    public selectedProduct: IProduct | null;
     public balance: number = 0;
     public tempBalance = 0;
     public change = 0;
@@ -27,6 +29,9 @@ export class WalletComponent implements OnInit {
             .pipe(distinctUntilChanged())
             .subscribe(balance => (this.balance = balance));
         this.paymentService.changeObservable.pipe(distinctUntilChanged()).subscribe(change => (this.change = change));
+        this.paymentService.selectedProductObservable.pipe(distinctUntilChanged()).subscribe(product => {
+            this.selectedProduct = product;
+        });
     }
 
     public addCoins(amount: string): void {

@@ -1,5 +1,5 @@
-<div class="row products-wrapper justify-content-around">
-    <div *ngFor="let product of products" class="card col-3">
+<div class="product__wrapper">
+    <div *ngFor="let product of products" class="product__item">
         <app-product-item
             *ngIf="product"
             [item]="product"

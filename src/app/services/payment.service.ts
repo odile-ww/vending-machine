@@ -18,8 +18,8 @@ export class PaymentService {
     //products state
     private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
     public productsObservable: Observable<IProduct[]> = this.productsSubject$.asObservable();
-    private selectedProductSubject$ = new BehaviorSubject<IProduct>({} as IProduct);
-    public selectedProductObservable: Observable<IProduct> = this.selectedProductSubject$.asObservable();
+    private selectedProductSubject$ = new BehaviorSubject<IProduct | null>(null);
+    public selectedProductObservable: Observable<IProduct | null> = this.selectedProductSubject$.asObservable();
 
     //transaction state
     private isReadySubject$ = new BehaviorSubject<boolean>(false);
@@ -47,7 +47,7 @@ export class PaymentService {
         this.changeSubject$.next(amount);
     }
 
-    public updateSelectedProduct(product: IProduct): void {
+    public updateSelectedProduct(product: IProduct | null): void {
         this.selectedProductSubject$.next(product);
     }
 }

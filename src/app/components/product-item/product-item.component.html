@@ -1,15 +1,15 @@
-<section class="product-wrapper">
-    <p class="text-center">{{ item.name }}</p>
-    <div class="d-flex flex-column">
-        <div class="d-flex justify-content-around">
-            <p>{{ item.price | currency: 'EUR' : 'symbol' }}</p>
-        </div>
-        <p class="text-center">Stock: {{ item.quantity }}</p>
-        <button *ngIf="item.quantity > 0; else outOfStock" (click)="selectProduct(item)" [disabled]="isDisabled">
-            Select
-        </button>
-        <ng-template #outOfStock>
-            <p>Out of Stock</p>
-        </ng-template>
+<section class="product__details">
+    <header class="product__header">{{ item.name }}</header>
+    <div class="cylinder"></div>
+    <div class="product__footer">
+        <span>{{ item.price | currency: 'EUR' : 'symbol' }}</span>
+        <span class="text-center">Stock: {{ item.quantity }}</span>
     </div>
+
+    <button *ngIf="item.quantity > 0; else outOfStock" (click)="selectProduct(item)" [disabled]="isDisabled">
+        Select
+    </button>
+    <ng-template #outOfStock>
+        <p>Out of Stock</p>
+    </ng-template>
 </section>

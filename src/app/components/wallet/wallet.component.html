@@ -1,11 +1,11 @@
-<section class="wallet d-flex flex-column">
+<section class="wallet__warapper">
     <div class="card">
         <p>Choose coin</p>
-        <div class="d-flex coin-container">
+        <div class="coin__container">
             <div
                 *ngFor="let coin of coinDenominations"
                 class="coin-item"
-                [ngClass]="{ disabled: balance }"
+                [ngClass]="{ disabled: balance || selectedProduct || change }"
                 (click)="addCoins(coin)"
                 (keyup)="addCoins(coin)"
                 [attr.tabindex]="-1">
