@@ -1,5 +1,5 @@
 <section class="product__details flex flex__column">
-    <div *ngIf="item.quantity < 0" class="out-of-stock__ribbon"><span>Out of Stock</span></div>
+    <div *ngIf="item.quantity === 0" class="out-of-stock__ribbon"><span>Out of Stock</span></div>
 
     <header class="product__header">{{ item.name }}</header>
     <div class="product__image">
