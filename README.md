@@ -14,8 +14,8 @@ It uses [json-server](https://www.npmjs.com/package/json-server) to mock a fake 
 
 -   Initial list of products is fetched from the API, but state is handled in the application, via a `VendingMachineService`.
 -   Several Euro coins denominations can be used to purchase a product: `0.10, 0.20, 0.50, 1.00`. The app locale is set to `de-DE`.
--   A purchase can be made by selecting a coin denomiation available, then validating the purchase. Based on the available balance, a number of products will become available & can be selected by clicking the `Select` button.
--   A transaction can be cancelled before a product selection, via the `Clear` button.
+-   A purchase can be made by selecting a coin denomination available, then validating the purchase. Based on the available balance, a number of products will become available & can be selected by clicking the `Select` button.
+-   A transaction can be canceled before a product selection, via the `Clear` button.
 -   Upon successful product selection, the machine will offer the selected product and change.
 
 ## Code scaffolding
